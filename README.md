@@ -22,3 +22,4 @@ Shop Shop is an e-commerce application that allows users to shop for various ite
 
 ### Link to Deployed Application
 
+https://vast-taiga-73882.herokuapp.com/
