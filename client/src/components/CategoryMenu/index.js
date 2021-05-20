@@ -6,12 +6,13 @@ import {
 import { useQuery } from "@apollo/react-hooks";
 import { QUERY_CATEGORIES } from "../../utils/queries";
 
-import { idbPromise } from '../../utils/helpers';
+import { idbPromise } from "../../utils/helpers";
 
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from "react-redux";
 
-function CategoryMenu () {
-  const [state, dispatch] = useStoreContext();
+function CategoryMenu() {
+  const state = useSelector((state) => state);
+  const dispatch = useDispatch();
 
   const { categories } = state;
 
@@ -21,16 +22,16 @@ function CategoryMenu () {
     if (categoryData) {
       dispatch({
         type: UPDATE_CATEGORIES,
-        categories: categoryData.categories
+        categories: categoryData.categories,
       });
-      categoryData.categories.forEach(category => {
-        idbPromise('categories', 'put', category);
+      categoryData.categories.forEach((category) => {
+        idbPromise("categories", "put", category);
       });
     } else if (!loading) {
-      idbPromise('categories', 'get').then(categories => {
+      idbPromise("categories", "get").then((categories) => {
         dispatch({
           type: UPDATE_CATEGORIES,
-          categories: categories
+          categories: categories,
         });
       });
     }
